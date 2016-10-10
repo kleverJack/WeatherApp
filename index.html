@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="Skeleton-2.0.4/css/skeleton.css">
+<link rel="stylesheet" type="text/css" href="application.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="application.js"></script>
+<title>kleverJack WeatherInfo</title>
+</head>
+<body data-ng-app="WeatherApp">
+<div class="container" data-ng-controller="LocationController">
+  <div class="row actionButton">
+    <div class="twelve columns" data-ng-if="null==weatherCondition && (null==userLocation.zip || ''==userLocation.zip.trim())"
+    data-ng-click="findLocation()" data-ng-bind="'Where am I'"></div>
+    <div class="twelve columns" data-ng-if="null==weatherCondition && (null!=userLocation.zip && ''!=userLocation.zip.trim())"
+    data-ng-click="getWeatherInfo()" data-ng-bind="'How is it here'"></div>
+    <div class="twelve columns" data-ng-if="null!=weatherCondition"
+    data-ng-click="clearPage()" data-ng-bind="'Somewhere else'"></div>
+    <div class="twelve columns message" data-ng-bind="message"></div>
+  </div>
+  <div data-ng-show="null!=weatherCondition" class="row locationdata">
+    <div class="two columns">&nbsp;</div>
+    <div class="three columns temperature">
+	  <label>City</label>
+	  <span class="city" data-ng-bind="weatherCondition.name"></span>
+	  <label>Temperature : </label>
+      <span class="minTemp" data-ng-bind="weatherCondition.main.temp_min+' C'"></span>-<span class="maxTemp" data-ng-bind="weatherCondition.main.temp_max+' C'"></span>
+	  <span class="humidity" data-ng-bind="'Humidity : '+weatherCondition.main.humidity+'%'"></span>
+    </div>
+	<div class="two columns">
+      <img data-ng-src="http://openweathermap.org/img/w/{{weatherCondition.weather[0].icon}}.png" alt="{{weatherCondition.weather[0].main}}"/>
+    </div>
+	<div class="three columns">
+      <label>Wind speed : </label>
+	  <span data-ng-bind="weatherCondition.wind.speed"></span>
+	  <label>Rain : </label>
+      <span class="rain" data-ng-bind="weatherCondition.rain['3h']+' cm/3h'"></span>
+    </div>
+    <div class="two columns">&nbsp;</div>
+  </div>
+  <div data-ng-show="null==weatherCondition" class="row locationdata">
+    <div class="two columns">&nbsp;</div>
+    <div class="three columns">
+	  <label>Country :</label>
+      <select data-ng-options="country.alpha2Code as country.name for country in countryList"
+      data-ng-model="userLocation.country"></select>
+	</div>
+	<div class="two columns">&nbsp;</div>
+	<div class="three columns">
+	  <label>ZIP/PIN :</label>
+      <input type="text" placeholder="ZIP/PIN Code" data-ng-model="userLocation.zip" />
+    </div>
+    <div class="two columns">&nbsp;</div>
+  </div>
+</div>
+</body>
+</html>

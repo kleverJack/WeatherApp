@@ -1,0 +1,18 @@
+.container{color:#8c8a82;}
+.actionButton{
+  display:block;
+  text-align:center;
+  background-color:#f9bf68;
+  font-size:32px;
+  color:#ffffff;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
+  height:50px;
+  cursor:pointer;
+}
+.message{font-size:16px;color:#f9bf68;font-weight:700;}
+.locationdata{min-height:300px; padding-top:60px;}
+.locationdata input,.locationdata select {width:200px;}
+.minTemp {color: green; font-size: 14px;}
+.maxTemp {color: red; font-size: 16px;}
+.humidity {color: green; font-size: 12px;}
