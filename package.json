@@ -1,0 +1,11 @@
+{
+  "name": "kj-weather-app",
+  "description": "Weather Application",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
